@@ -115,7 +115,7 @@ if solucion_alumno:
     try:
         nota_test = 1.5
         # Usamos un entorno controlado para evaluar la respuesta del alumno
-        if eval(solucion_alumno, {"nota": 1.5}) == False and eval(solucion_alumno, {"nota" >= 3.0}) == True:
+        if eval(solucion_alumno, {"nota"< 3}) == False and eval(solucion_alumno, {"nota" >= 3.0}) == True:
             st.success("✨ ¡Excelente! Has corregido el bug. Ahora el sistema solo aprueba con 3.0 o más.")
         else:
             st.error("❌ El bug sigue ahí. Tu lógica aún permite aprobar a alguien con 1.5.")
@@ -123,5 +123,6 @@ if solucion_alumno:
         st.info("Escribe una comparación válida, por ejemplo: nota >= 3.0")
 
 st.caption("Recurso diseñado para las Unidades Tecnológicas de Santander - UTS")
+
 
 
