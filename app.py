@@ -3,7 +3,7 @@ import streamlit as st
 # 1. Configuración de la página y Estética Tech
 st.set_page_config(page_title="El Decisor - UTS", page_icon="🤖", layout="centered")
 
-# Estilos personalizados para que se vea más profesional
+# Estilos personalizados corregidos
 st.markdown("""
     <style>
     .main {
@@ -17,7 +17,7 @@ st.markdown("""
         color: white;
     }
     </style>
-    """, unsafe_allow_index=True)
+    """, unsafe_allow_html=True) # <-- Aquí estaba el error, ya está corregido
 
 # 2. Encabezado
 st.title("🤖 Simulador: El Decisor")
@@ -123,3 +123,4 @@ if solucion_alumno:
         st.info("Escribe una comparación válida, por ejemplo: nota >= 3.0")
 
 st.caption("Recurso diseñado para las Unidades Tecnológicas de Santander - UTS")
+
