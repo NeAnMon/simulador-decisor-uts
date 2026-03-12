@@ -111,18 +111,36 @@ if nota > 0:
 solucion_alumno = st.text_input("Escribe la condición corregida aquí:", "")
 
 if solucion_alumno:
-    # Validamos con una nota que debería fallar (1.5)
     try:
-        nota_test = 1.5
-        # Usamos un entorno controlado para evaluar la respuesta del alumno
-        if eval(solucion_alumno, {"nota"< 3}) == False and eval(solucion_alumno, {"nota" >= 3.0}) == True:
-            st.success("✨ ¡Excelente! Has corregido el bug. Ahora el sistema solo aprueba con 3.0 o más.")
+        # Definimos los casos de prueba rigurosos
+        casos = {
+            "muy_bajo": 1.5,
+            "casi_pasa": 2.99,  # Si el alumno usa nota > 2, este caso lo atrapa
+            "aprobado": 3.0
+        }
+
+        # Evaluamos la lógica del alumno en los tres escenarios
+        res_muy_bajo = eval(solucion_alumno, {"nota": casos["muy_bajo"]})
+        res_casi_pasa = eval(solucion_alumno, {"nota": casos["casi_pasa"]})
+        res_aprobado = eval(solucion_alumno, {"nota": casos["aprobado"]})
+
+        # La condición para el ÉXITO es:
+        # Debe ser Falso para 1.5 AND Falso para 2.99 AND Verdadero para 3.0
+        if res_muy_bajo == False and res_casi_pasa == False and res_aprobado == True:
+            st.success(f"✨ ¡Perfecto! La lógica `{solucion_alumno}` es correcta. Solo aprueban los que alcanzan el 3.0.")
+            st.balloons()
         else:
-            st.error("❌ El bug sigue ahí. Tu lógica aún permite aprobar a alguien con 1.5.")
-    except:
-        st.info("Escribe una comparación válida, por ejemplo: nota >= 3.0")
+            st.error("❌ El bug sigue ahí. Tu lógica todavía es muy permisiva y deja pasar notas menores a 3.0.")
+            
+            # Feedback pedagógico adicional
+            if res_casi_pasa == True:
+                st.warning("Pista: Alguien con 2.99 está aprobando con tu código. ¡Ajusta el operador!")
+                
+    except Exception as e:
+        st.info("Escribe una comparación válida. Ejemplo: `nota >= 3.0`")
 
 st.caption("Recurso diseñado para las Unidades Tecnológicas de Santander - UTS")
+
 
 
 
