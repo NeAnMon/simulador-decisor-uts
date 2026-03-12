@@ -127,7 +127,7 @@ if solucion_alumno:
         # La condición para el ÉXITO es:
         # Debe ser Falso para 1.5 AND Falso para 2.99 AND Verdadero para 3.0
         if res_muy_bajo == False and res_casi_pasa == False and res_aprobado == True:
-            st.success(f"✨ ¡Perfecto! La lógica `{solucion_alumno}` es correcta. Solo aprueban los que alcanzan el 3.0.")
+            st.success(f""✨ ¡Excelente! Has corregido el bug. Ahora el sistema es estricto y solo aprueba con 3.0 o más.")
             st.balloons()
         else:
             st.error("❌ El bug sigue ahí. Tu lógica todavía es muy permisiva y deja pasar notas menores a 3.0.")
@@ -140,6 +140,7 @@ if solucion_alumno:
         st.info("Escribe una comparación válida. Ejemplo: `nota >= 3.0`")
 
 st.caption("Recurso diseñado para las Unidades Tecnológicas de Santander - UTS")
+
 
 
 
